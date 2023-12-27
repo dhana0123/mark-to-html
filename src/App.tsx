@@ -22,13 +22,16 @@ const App = () => {
 
   const sendMarkdownToBackend = async (markdownContent: string) => {
     try {
-      const response = await fetch("http://localhost:3001/convert", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ markdown: markdownContent }),
-      });
+      const response = await fetch(
+        "https://backend-mark.onrender.com/convert",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ markdown: markdownContent }),
+        }
+      );
       const htmlResponse = await response.json();
       updatePreview(htmlResponse.html);
     } catch (error) {
