@@ -7,7 +7,7 @@ const App = () => {
   const [previewHTML, setPreviewHTML] = useState("");
 
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:8080/convert");
+    const ws = new WebSocket("ws://backend-mark.onrender.com/convert");
     setSocketConnection(ws);
 
     ws.onopen = function () {
