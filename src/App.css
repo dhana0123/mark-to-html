@@ -1,16 +1,16 @@
-.editor-pane {
-  margin: 3rem;
-  margin-bottom: 0rem;
+body {
+  padding: 1rem;
 }
 .textArea {
-  min-width: 100%;
-  min-height: 300px;
+  width: 100%;
+  min-height: 20rem;
   border-radius: 1rem;
+  box-sizing: border-box;
   padding: 1rem;
 }
 
 .preview-pane {
-  margin: 2rem;
+  padding: 2rem;
   margin-top: 0rem;
   border-radius: 1rem;
   padding: 1rem;

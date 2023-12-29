@@ -1,10 +1,34 @@
-// App.js
-
 import React, { useEffect, useState } from "react";
 import "./App.css";
 
 const App = () => {
   const [markdown, setMarkdown] = useState("");
+  const [socketConnect, setSocketConnection] = useState<WebSocket | null>(null);
+  const [previewHTML, setPreviewHTML] = useState("");
+
+  useEffect(() => {
+    const ws = new WebSocket("ws://localhost:8080/convert");
+    setSocketConnection(ws);
+
+    ws.onopen = function () {
+      console.log("WebSocket connected successfully");
+    };
+
+    ws.onmessage = function (evt) {
+      const receivedMsg = evt.data;
+      setPreviewHTML(receivedMsg);
+    };
+
+    ws.onclose = function () {
+      console.log("WebSocket connection closed");
+    };
+
+    return () => {
+      if (ws) {
+        ws.close();
+      }
+    };
+  }, []);
 
   let debounceTimer: NodeJS.Timeout;
 
@@ -12,37 +36,22 @@ const App = () => {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
       sendMarkdownToBackend(value);
-    }, 700);
+    }, 100);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setMarkdown(e.target.value);
-    debouncedSendToBackend(e.target.value);
+    const { value } = e.target;
+    setMarkdown(value);
+    debouncedSendToBackend(value);
   };
 
-  const sendMarkdownToBackend = async (markdownContent: string) => {
-    try {
-      const response = await fetch(
-        "https://backend-mark.onrender.com/convert",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ markdown: markdownContent }),
-        }
-      );
-      const htmlResponse = await response.json();
-      updatePreview(htmlResponse.html);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
-
-  const updatePreview = (html: string) => {
-    const elem = document.getElementById("preview");
-    if (elem) {
-      elem.innerHTML = html;
+  const sendMarkdownToBackend = (markdownContent: string) => {
+    if (socketConnect) {
+      try {
+        socketConnect.send(markdownContent);
+      } catch (error) {
+        console.error("Error:", error);
+      }
     }
   };
 
@@ -58,7 +67,7 @@ const App = () => {
       </div>
       <div className="preview-pane">
         <h2>Preview</h2>
-        <div id="preview" />
+        <div dangerouslySetInnerHTML={{ __html: previewHTML }} />
       </div>
     </div>
   );
