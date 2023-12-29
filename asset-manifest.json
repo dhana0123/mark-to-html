@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/mark-to-html/static/css/main.6bf11d1a.css",
-    "main.js": "/mark-to-html/static/js/main.26f65cc4.js",
-    "static/js/787.8bf1f507.chunk.js": "/mark-to-html/static/js/787.8bf1f507.chunk.js",
-    "index.html": "/mark-to-html/index.html",
-    "main.6bf11d1a.css.map": "/mark-to-html/static/css/main.6bf11d1a.css.map",
-    "main.26f65cc4.js.map": "/mark-to-html/static/js/main.26f65cc4.js.map",
-    "787.8bf1f507.chunk.js.map": "/mark-to-html/static/js/787.8bf1f507.chunk.js.map"
+    "main.css": "/Markdown-html-fun-project/static/css/main.b6080dc2.css",
+    "main.js": "/Markdown-html-fun-project/static/js/main.733a8ad2.js",
+    "static/js/787.8bf1f507.chunk.js": "/Markdown-html-fun-project/static/js/787.8bf1f507.chunk.js",
+    "index.html": "/Markdown-html-fun-project/index.html",
+    "main.b6080dc2.css.map": "/Markdown-html-fun-project/static/css/main.b6080dc2.css.map",
+    "main.733a8ad2.js.map": "/Markdown-html-fun-project/static/js/main.733a8ad2.js.map",
+    "787.8bf1f507.chunk.js.map": "/Markdown-html-fun-project/static/js/787.8bf1f507.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6bf11d1a.css",
-    "static/js/main.26f65cc4.js"
+    "static/css/main.b6080dc2.css",
+    "static/js/main.733a8ad2.js"
   ]
 }
